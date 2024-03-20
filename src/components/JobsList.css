@@ -1,0 +1,17 @@
+/* JobsList.css */
+.jobs-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .jobs-list li {
+    margin-bottom: 20px;
+    background-color: #f7f7f7;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .jobs-list h2 {
+    margin-top: 0;
+  }
+  

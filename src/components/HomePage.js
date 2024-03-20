@@ -10,11 +10,12 @@ import './HomePage.css';
  * @returns {JSX.Element} A JSX element representing the home page.
  */
 function HomePage() {
+  console.log("Rendering HomePage");
   return (
     <div className="homepage">
       <h1>Welcome to Jobly</h1>
       <p>All the jobs in one, convenient place.</p>
-      // ... other content
+      
     </div>
   );
 }

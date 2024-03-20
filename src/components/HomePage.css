@@ -1,0 +1,15 @@
+/* src/components/HomePage.css */
+.homepage {
+    background-color: #b6b5b5;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .homepage h1 {
+    color: #333;
+  }
+  
+  .homepage p {
+    color: #666;
+  }
+  

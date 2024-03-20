@@ -17,6 +17,7 @@ import React from 'react';
  * @returns {JSX.Element} A JSX element representing the job card.
  */
 function JobCard({ job }) {
+  console.log("Rendering JobCard");
   return (
     <div className="JobCard">
       <h3>{job.title}</h3>

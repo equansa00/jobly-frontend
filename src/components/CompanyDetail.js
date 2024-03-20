@@ -14,6 +14,8 @@ import JobCard from './JobCard';
  * @returns {JSX.Element} A JSX element representing the company details or a loading message.
  */
 function CompanyDetail() {
+  console.log("Rendering JobDetail");
+
   // Get the 'handle' of the company from the URL
   const { handle } = useParams();
 

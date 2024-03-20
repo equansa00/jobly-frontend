@@ -1,10 +1,12 @@
 // src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
+import CompaniesList from './components/CompaniesList';
+import JobsList from './components/JobsList';
+import LoginForm from './components/LoginForm';
 import './App.css';
-// Import other components
 
 /**
  * App is the root React component of the application.
@@ -18,11 +20,15 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <NavBar />
-      <Routes>
+      <div>
+        <NavBar />
+        <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* Define other routes using element prop */}
-      </Routes>
+        <Route path="/companies" element={<CompaniesList />} />
+        <Route path="/jobs" element={<JobsList />} />
+        <Route path="/login" element={<LoginForm />} />
+        </Routes>
+      </div>
     </Router>
   );
 }

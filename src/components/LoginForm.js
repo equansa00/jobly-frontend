@@ -15,6 +15,8 @@ import './LoginForm.css';
  * @returns {JSX.Element} A JSX element representing the login form.
  */
 function LoginForm({ setToken }) {
+  console.log("Rendering LoginForm");
+
   // State for storing the form data
   const [formData, setFormData] = useState({
     username: '',
