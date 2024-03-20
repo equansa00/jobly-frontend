@@ -1,38 +1,121 @@
-.App {
-  text-align: center;
+/* Reset some basic elements */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+    line-height: 1;
+    font-family: 'Open Sans', sans-serif; /* Example font */
+    background-color: #F8F9FA; /* Light gray background */
+    color: #343a40; /* Dark gray text */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+ol, ul {
+    list-style: none;
 }
 
-.App-link {
-  color: #61dafb;
+/* Global styles */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Navigation styles */
+.navbar {
+    background-color: #007bff; /* Primary color */
+    padding: 20px 0;
+    color: #fff;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 15px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+/* Homepage styles */
+.Homepage {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: calc(100vh - 150px);
+    text-align: center;
+}
+
+.Homepage h1 {
+    color: #fff;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 5px #34302f;
+}
+
+/* Cards */
+.card {
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin: 15px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Forms */
+form input, form button {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 10px;
+    width: calc(100% - 22px); /* Accounting for padding and border */
+}
+
+form button {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #0056b3; /* Darker blue */
+}
+
+/* Footer */
+footer {
+    background-color: #343a40; /* Dark gray */
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
 }
