@@ -1,10 +1,18 @@
 // src/api/JoblyApi.js
-//jobly-frontend/src/api/JoblyApi.js
-
 import axios from 'axios';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3001';
 
+/**
+ * JoblyApi is a class that provides static methods for making API calls.
+ * It uses the axios library to make the HTTP requests.
+ * The base URL of the API is either the REACT_APP_BASE_URL environment variable or 'http://localhost:3001'.
+ * The token for authentication is stored in the static 'token' property.
+ * 
+ * Each method corresponds to a different API endpoint and HTTP method.
+ * The 'request' method is a general method for making API calls, and the other methods use it for specific tasks.
+ * The 'setToken' method is used to set the token for authentication.
+ */
 class JoblyApi {
 
   static token;
@@ -31,7 +39,6 @@ class JoblyApi {
   static async getCompanies() {
     let res = await this.request('companies');
     return res.companies;
-    
   }
 
   static async getCompany(handle) {

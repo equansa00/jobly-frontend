@@ -1,121 +1,91 @@
-/* Reset some basic elements */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+/* Global Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #8f9196; /* Dark background for the entire page */
+  color: white; /* Light text color for contrast */
 }
 
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-    display: block;
+/* Container for any card-like elements */
+.card {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin: 20px;
+  padding: 20px;
+  color: #bbb8b8;
 }
 
-body {
-    line-height: 1;
-    font-family: 'Open Sans', sans-serif; /* Example font */
-    background-color: #F8F9FA; /* Light gray background */
-    color: #343a40; /* Dark gray text */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-ol, ul {
-    list-style: none;
-}
-
-/* Global styles */
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Navigation styles */
+/* NavBar Styles */
 .navbar {
-    background-color: #007bff; /* Primary color */
-    padding: 20px 0;
-    color: #fff;
+  background-color: #20232a;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .navbar a {
-    color: #fff;
-    text-decoration: none;
-    padding: 0 15px;
+  color: #61dafb;
+  text-decoration: none;
+  margin-left: 16px;
 }
 
 .navbar a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-/* Homepage styles */
-.Homepage {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    height: calc(100vh - 150px);
-    text-align: center;
+/* Homepage Styles */
+.homepage {
+  text-align: center;
+  padding-top: 50px; /* or however much space you need */
 }
 
-.Homepage h1 {
-    color: #fff;
-    font-size: 2.5rem;
-    text-shadow: 2px 2px 5px #34302f;
+/* Job and Company List Styles */
+.list {
+  padding: 0;
+  list-style: none;
 }
 
-/* Cards */
-.card {
-    background-color: #fff;
-    border: 1px solid #ced4da;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    margin: 15px;
-    padding: 20px;
-    transition: transform 0.3s ease;
+.list-item {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
 }
 
-.card:hover {
-    transform: translateY(-5px);
+.list-item:last-child {
+  border-bottom: none;
 }
 
-/* Forms */
-form input, form button {
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    margin: 10px 0;
-    padding: 10px;
-    width: calc(100% - 22px); /* Accounting for padding and border */
+/* Forms for Login and Signup */
+.form-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
 }
 
-form button {
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-form button:hover {
-    background-color: #0056b3; /* Darker blue */
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
 }
 
-/* Footer */
-footer {
-    background-color: #343a40; /* Dark gray */
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
+input[type="submit"]:hover {
+  background-color: #39a9db;
 }
+
+/* Add additional styles below as needed */
