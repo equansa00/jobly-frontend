@@ -3,54 +3,49 @@ import React, { useState } from 'react';
 import JoblyApi from '../api/JoblyApi';
 
 /**
- * SignupForm is a React component that provides a form for user signup.
- * It uses the JoblyApi to register the user and receive a token.
- * The token is then passed to the parent component through the 'setToken' prop and stored in local storage.
- * The form data and any error during signup are managed in the 'formData' and 'error' states respectively.
+ * SignupForm component allows new users to register.
+ * On successful registration, the user receives a token which is passed
+ * to the parent component via the setToken prop and stored in local storage.
+ * This component manages form data and any errors during registration in its state.
  * 
- * @param {Object} props - The properties passed to this component.
- * @param {Function} props.setToken - The function to set the token in the parent component.
- * 
- * @returns {JSX.Element} A JSX element representing the signup form.
+ * @param {Object} props - Component props
+ * @param {Function} props.setToken - Function to set the user's token in the parent component
+ * @returns {JSX.Element} The JSX code for the SignupForm component.
  */
 function SignupForm({ setToken }) {
-  // State for storing the form data
   const [formData, setFormData] = useState({
     username: '',
     password: '',
+    firstName: '',
+    lastName: '',
     email: '',
   });
-
-  // State for storing any error that occurs during signup
   const [error, setError] = useState(null);
 
-  // Function for handling changes in the form inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(data => ({ ...data, [name]: value }));
+    setFormData(f => ({ ...f, [name]: value }));
   };
 
-  // Function for handling form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = await JoblyApi.signup(formData);
+      const token = await JoblyApi.register(formData);
       setToken(token);
-      localStorage.setItem('joblyToken', token); // Store the token
+      localStorage.setItem('joblyToken', token);
     } catch (err) {
       setError(err.toString());
     }
   };
 
-  // Render the signup form
   return (
-    <form onSubmit={handleSubmit}>
-      <input name="username" value={formData.username} onChange={handleChange} placeholder="Username" required />
-      <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Password" required />
-      <input name="email" value={formData.email} onChange={handleChange} placeholder="Email" required />
-      <button type="submit">Sign Up</button>
-      {error && <div>{error}</div>}
-    </form>
+    <div className="form-container">
+      <form onSubmit={handleSubmit}>
+        {error && <div className="alert alert-danger">Error: {error}</div>}
+        {/* Input fields for username, password, firstName, lastName, and email */}
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
   );
 }
 
