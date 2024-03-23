@@ -1,37 +1,29 @@
 // src/App.js
-
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import NavBar from './components/NavBar';
-import HomePage from './components/HomePage';
-import CompaniesList from './components/CompaniesList';
-import JobsList from './components/JobsList';
-import LoginForm from './components/LoginForm';
+import React, { useState, useEffect } from 'react';
+import AppRoutes from './routes/AppRoutes'; // Import AppRoutes
+import JoblyApi from './api/JoblyApi'; // Ensure this path is correct
 import './App.css';
 
-/**
- * App is the root React component of the application.
- * It uses the BrowserRouter (aliased as Router) from react-router-dom to enable routing.
- * Inside the Router, it renders the NavBar component and a set of Routes.
- * Each Route has a 'path' prop which is the URL path, and an 'element' prop which is the React component to render when the path matches.
- * Currently, there is a Route for the home page ('/'), and more Routes can be added for other pages.
- * 
- * @returns {JSX.Element} A JSX element representing the application.
- */
-function App() {
+const App = () => {
+  const [token, setToken] = useState();
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('joblyToken');
+    if (storedToken) {
+      JoblyApi.setToken(storedToken); // Ensure JoblyApi is updated with the stored token
+      setToken(storedToken);
+    }
+  }, []);
+
+  const handleSetToken = (newToken) => {
+    localStorage.setItem('joblyToken', newToken);
+    JoblyApi.setToken(newToken); // Update the JoblyApi token
+    setToken(newToken);
+  };
+
   return (
-    <Router>
-      <div>
-        <NavBar />
-        <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/companies" element={<CompaniesList />} />
-        <Route path="/jobs" element={<JobsList />} />
-        <Route path="/login" element={<LoginForm />} />
-        </Routes>
-      </div>
-    </Router>
+    <AppRoutes setToken={handleSetToken} /> // Pass setToken down to AppRoutes
   );
-}
+};
 
 export default App;

@@ -1,33 +1,45 @@
+// src/components/LoginForm.js
 import React, { useState } from 'react';
 import JoblyApi from '../api/JoblyApi';
 import './LoginForm.css';
+import PropTypes from 'prop-types';
 
 function LoginForm({ setToken }) {
-  const [isLogin, setIsLogin] = useState(true); // State to toggle between login and registration
+  // Define isLogin state to toggle between login and registration
+  const [isLogin, setIsLogin] = useState(true);
+
+  // Initialize formData state to store user input
   const [formData, setFormData] = useState({
     username: '',
     password: '',
-    firstName: '', // Additional fields for registration
+    firstName: '',
     lastName: '',
     email: '',
   });
+
+  // Initialize error state to store and display any login/registration errors
   const [error, setError] = useState(null);
 
+  // handleChange updates formData state based on user input
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(data => ({ ...data, [name]: value }));
   };
 
+  // handleSubmit manages form submission for both login and registration
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       let token;
       if (isLogin) {
-        // Login flow
-        token = await JoblyApi.login(formData);
+        // Handle login
+        token = await JoblyApi.login({
+          username: formData.username,
+          password: formData.password,
+        });
       } else {
-        // Registration flow
-        await JoblyApi.register(formData); // Assuming you have a register method
+        // Handle registration
+        await JoblyApi.register(formData);
         token = await JoblyApi.login({
           username: formData.username,
           password: formData.password,
@@ -40,9 +52,10 @@ function LoginForm({ setToken }) {
     }
   };
 
+  // toggleForm switches between login and registration forms
   const toggleForm = () => {
     setIsLogin(!isLogin);
-    setError(null); // Reset error messages when toggling
+    setError(null);
   };
 
   return (
@@ -50,7 +63,7 @@ function LoginForm({ setToken }) {
       <h2>{isLogin ? 'Log In' : 'Sign Up'}</h2>
       <form onSubmit={handleSubmit}>
         {error && <div className="error">Error: {error}</div>}
-        {/* Username and password fields are always shown */}
+        {/* Username and password fields */}
         <div className="form-group">
           <label htmlFor="username">Username</label>
           <input id="username" name="username" value={formData.username} onChange={handleChange} required />
@@ -84,5 +97,9 @@ function LoginForm({ setToken }) {
     </div>
   );
 }
+
+LoginForm.propTypes = {
+  setToken: PropTypes.func.isRequired,
+};
 
 export default LoginForm;

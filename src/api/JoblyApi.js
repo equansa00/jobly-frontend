@@ -1,14 +1,14 @@
 // src/api/JoblyApi.js
 import axios from 'axios';
 
-const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 
 class JoblyApi {
   static token;
 
   static async request(endpoint, data = {}, method = 'get') {
     console.debug('API Call:', endpoint, data, method);
-    const url = `${BASE_URL}/${endpoint}`;
+    const url = `${API_BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${JoblyApi.token}` };
     const params = method === 'get' ? data : {};
 
@@ -56,7 +56,7 @@ class JoblyApi {
   }
 
   static async login(data) {
-    let res = await this.request(`login`, data, 'post');
+    let res = await this.request(`auth/login`, data, 'post'); // Ensure correct path
     JoblyApi.setToken(res.token);
     return res.token;
   }
@@ -72,15 +72,16 @@ class JoblyApi {
     return res.token;
   }
 
-  static async register(userData) {
-    try {
-      const response = await axios.post(`${BASE_URL}/auth/register`, userData);
-      return response.data.token; // Assuming the API returns a token on successful registration
-    } catch (error) {
-      throw new Error("Registration failed. Please try again.");
-    }
+  static async register(data) {
+    let res = await this.request(`auth/register`, data, 'post'); // Ensure correct path
+    JoblyApi.setToken(res.token);
+    return res.token;
   }
-  
+
+  static async searchCompanies(name) {
+    let res = await this.request('companies', { name });
+    return res.companies;
+  }
 }
 
 export default JoblyApi;

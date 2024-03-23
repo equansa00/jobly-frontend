@@ -1,8 +1,6 @@
-// Import statements for Router functionalities
+// src/routes/AppRoutes.js
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
-// Importing components
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from '../components/HomePage';
 import CompaniesList from '../components/CompaniesList';
 import CompanyDetail from '../components/CompanyDetail';
@@ -12,8 +10,7 @@ import SignupForm from '../components/SignupForm';
 import ProfileForm from '../components/ProfileForm';
 import NavBar from '../components/NavBar';
 
-// AppRoutes component setup with Router, Routes, and Route
-function AppRoutes() {
+function AppRoutes({ setToken }) { // Accept setToken prop
   return (
     <Router>
       <NavBar />
@@ -22,8 +19,8 @@ function AppRoutes() {
         <Route path="/companies" element={<CompaniesList />} />
         <Route path="/companies/:handle" element={<CompanyDetail />} />
         <Route path="/jobs" element={<JobsList />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/signup" element={<SignupForm />} />
+        <Route path="/login" element={<LoginForm setToken={setToken} />} /> {/* Pass setToken to LoginForm */}
+        <Route path="/signup" element={<SignupForm setToken={setToken} />} /> {/* Include setToken if you have a SignupForm */}
         <Route path="/profile" element={<ProfileForm />} />
       </Routes>
     </Router>
