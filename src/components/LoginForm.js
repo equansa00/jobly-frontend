@@ -5,42 +5,53 @@ import './LoginForm.css';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * LoginForm component.
+ * This component is responsible for rendering the login and registration form.
+ * It uses react-router-dom's useNavigate for programmatic navigation.
+ * @param {function} setToken - Function to set the authentication token.
+ */
 function LoginForm({ setToken }) {
   const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useState(true);
-  const [formData, setFormData] = useState({
+  const [isLogin, setIsLogin] = useState(true); // State variable to toggle between login and registration form
+  const [formData, setFormData] = useState({ // State variable for form data
     username: '',
     password: '',
     firstName: '',
     lastName: '',
     email: '',
   });
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(null); // State variable for error messages
 
+  // Function to handle form data changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(data => ({ ...data, [name]: value }));
   };
 
+  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       let token;
       if (isLogin) {
+        // If it's login form, call the login API
         token = await JoblyApi.login(formData);
       } else {
+        // If it's registration form, call the registration API and then login
         await JoblyApi.register(formData);
         token = await JoblyApi.login({
           username: formData.username,
           password: formData.password,
         });
       }
+      // Set the token in parent component and local storage, and navigate to homepage
       setToken(token);
       localStorage.setItem('joblyToken', token);
       localStorage.setItem('username', formData.username);
       navigate('/');
     } catch (err) {
-      // Customize error based on response for better user experience
+      // Handle error
       let errorMessage = err.toString();
       if (err.response && err.response.data && err.response.data.message) {
         errorMessage = err.response.data.message;
@@ -49,11 +60,13 @@ function LoginForm({ setToken }) {
     }
   };
 
+  // Function to toggle between login and registration form
   const toggleForm = () => {
     setIsLogin(!isLogin);
     setError(null); // Clear any existing errors
   };
 
+  // Render the form
   return (
     <div className="form-container">
       <h2>{isLogin ? 'Log In' : 'Sign Up'}</h2>
@@ -93,7 +106,7 @@ function LoginForm({ setToken }) {
 }
 
 LoginForm.propTypes = {
-  setToken: PropTypes.func.isRequired,
+  setToken: PropTypes.func.isRequired, // Prop validation
 };
 
 export default LoginForm;

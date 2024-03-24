@@ -1,67 +1,85 @@
-Jobly
+# Jobly
+
 Jobly is a full-stack job search application where users can explore companies, view job listings, and apply for jobs. Built with React on the frontend and Express/Node.js on the backend, Jobly offers a comprehensive and interactive user experience.
 
-Features
-User Authentication: Users can sign up, log in, and log out. Authentication is handled securely with JSON Web Tokens (JWTs).
-Company Exploration: Users can browse a list of companies, search for companies by name, and view detailed information about each company, including their job listings.
-Job Listings: Users can view a list of all jobs and apply to jobs directly through the application.
-Profile Management: Users can view and edit their profile, including their name, email, and password.
-Technologies Used
-Frontend:
-React: A JavaScript library for building user interfaces.
-React Router: A collection of navigational components for React applications.
-Backend:
-Node.js and Express: For building the server-side API.
-PostgreSQL: As the database for storing user, company, and job data.
-JWT: For handling authentication.
-Styling: Custom CSS alongside Bootstrap for responsive design.
-Getting Started
-Prerequisites
-Node.js
-npm or yarn
-PostgreSQL
-Backend Setup
-Clone the backend repository from GitHub.
-Navigate to the backend directory and install dependencies:
+## Features
 
+- **User Authentication:** Users can sign up, log in, and log out. Authentication is handled securely with JSON Web Tokens (JWTs).
+- **Company Exploration:** Users can browse a list of companies, search for companies by name, and view detailed information about each company, including their job listings.
+- **Job Listings:** Users can view a list of all jobs and apply to jobs directly through the application.
+- **Profile Management:** Users can view and edit their profile, including their name, email, and password.
 
-cd jobly-backend
-npm install
+## Technologies Used
 
-Create and seed the database:
+### Frontend:
+- **React:** A JavaScript library for building user interfaces.
+- **React Router:** A collection of navigational components for React applications.
 
+### Backend:
+- **Node.js and Express:** For building the server-side API.
+- **PostgreSQL:** As the database for storing user, company, and job data.
+- **JWT:** For handling authentication.
+- **Styling:** Custom CSS alongside Bootstrap for responsive design.
 
-createdb jobly
-psql jobly < data.sql
+## Getting Started
 
-Start the server:
+### Prerequisites
 
+- Node.js
+- npm or yarn
+- PostgreSQL
 
-npm start
+### Backend Setup
 
-Frontend Setup
-Clone the frontend repository from GitHub.
-Navigate to the frontend directory and install dependencies:
+1. Clone the backend repository from GitHub.
+2. Navigate to the backend directory and install dependencies:
 
+    ```bash
+    cd jobly-backend
+    npm install
+    ```
 
-cd jobly-frontend
-npm install
+3. Create and seed the database:
 
-Start the React application:
+    ```bash
+    createdb jobly
+    psql jobly < data.sql
+    ```
 
+4. Start the server:
 
-npm start
+    ```bash
+    npm start
+    ```
+
+### Frontend Setup
+
+1. Clone the frontend repository from GitHub.
+2. Navigate to the frontend directory and install dependencies:
+
+    ```bash
+    cd jobly-frontend
+    npm install
+    ```
+
+3. Start the React application:
+
+    ```bash
+    npm start
+    ```
 
 Your browser should automatically open to http://localhost:3000. If not, manually open this URL in your browser.
 
-Environment Variables
-Ensure you have the following environment variables set in your .env file in the frontend project:
+### Environment Variables
 
-REACT_APP_BASE_URL: The URL of your backend API (e.g., http://localhost:3001).
+Ensure you have the following environment variables set in your `.env` file in the frontend project:
 
-Deployment
-For instructions on deploying the Jobly application, please refer to the deployment.md file included in this repository.
+- `REACT_APP_BASE_URL`: The URL of your backend API (e.g., http://localhost:3001).
 
-Contributing
-Contributions are welcome! Please read the CONTRIBUTING.md for how to contribute to this project.
+## Deployment
 
+For instructions on deploying the Jobly application, please refer to the `deployment.md` file included in this repository.
+
+## Contributing
+
+Contributions are welcome! Please read the `CONTRIBUTING.md` for how to contribute to this project.
