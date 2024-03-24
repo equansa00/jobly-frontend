@@ -6,25 +6,24 @@ import CompaniesList from '../components/CompaniesList';
 import CompanyDetail from '../components/CompanyDetail';
 import JobsList from '../components/JobsList';
 import LoginForm from '../components/LoginForm';
-import SignupForm from '../components/SignupForm';
 import ProfileForm from '../components/ProfileForm';
 import NavBar from '../components/NavBar';
 
-function AppRoutes({ setToken }) { // Accept setToken prop
+function AppRoutes({ setToken }) {
   return (
-    <Router>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/companies" element={<CompaniesList />} />
-        <Route path="/companies/:handle" element={<CompanyDetail />} />
-        <Route path="/jobs" element={<JobsList />} />
-        <Route path="/login" element={<LoginForm setToken={setToken} />} /> {/* Pass setToken to LoginForm */}
-        <Route path="/signup" element={<SignupForm setToken={setToken} />} /> {/* Include setToken if you have a SignupForm */}
-        <Route path="/profile" element={<ProfileForm />} />
-      </Routes>
-    </Router>
+      <Router>
+          <NavBar />
+          <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/companies" element={<CompaniesList />} />
+              <Route path="/companies/:handle" element={<CompanyDetail />} />
+              <Route path="/jobs" element={<JobsList />} />
+              <Route path="/login" element={<LoginForm setToken={setToken} />} />
+              <Route path="/profile" element={<ProfileForm />} />
+          </Routes>
+      </Router>
   );
 }
 
 export default AppRoutes;
+

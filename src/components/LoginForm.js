@@ -3,12 +3,11 @@ import React, { useState } from 'react';
 import JoblyApi from '../api/JoblyApi';
 import './LoginForm.css';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm({ setToken }) {
-  // Define isLogin state to toggle between login and registration
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
-
-  // Initialize formData state to store user input
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -16,29 +15,20 @@ function LoginForm({ setToken }) {
     lastName: '',
     email: '',
   });
-
-  // Initialize error state to store and display any login/registration errors
   const [error, setError] = useState(null);
 
-  // handleChange updates formData state based on user input
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(data => ({ ...data, [name]: value }));
   };
 
-  // handleSubmit manages form submission for both login and registration
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       let token;
       if (isLogin) {
-        // Handle login
-        token = await JoblyApi.login({
-          username: formData.username,
-          password: formData.password,
-        });
+        token = await JoblyApi.login(formData);
       } else {
-        // Handle registration
         await JoblyApi.register(formData);
         token = await JoblyApi.login({
           username: formData.username,
@@ -47,15 +37,21 @@ function LoginForm({ setToken }) {
       }
       setToken(token);
       localStorage.setItem('joblyToken', token);
+      localStorage.setItem('username', formData.username);
+      navigate('/');
     } catch (err) {
-      setError(err.toString());
+      // Customize error based on response for better user experience
+      let errorMessage = err.toString();
+      if (err.response && err.response.data && err.response.data.message) {
+        errorMessage = err.response.data.message;
+      }
+      setError(errorMessage);
     }
   };
 
-  // toggleForm switches between login and registration forms
   const toggleForm = () => {
     setIsLogin(!isLogin);
-    setError(null);
+    setError(null); // Clear any existing errors
   };
 
   return (
@@ -63,7 +59,6 @@ function LoginForm({ setToken }) {
       <h2>{isLogin ? 'Log In' : 'Sign Up'}</h2>
       <form onSubmit={handleSubmit}>
         {error && <div className="error">Error: {error}</div>}
-        {/* Username and password fields */}
         <div className="form-group">
           <label htmlFor="username">Username</label>
           <input id="username" name="username" value={formData.username} onChange={handleChange} required />
@@ -72,7 +67,6 @@ function LoginForm({ setToken }) {
           <label htmlFor="password">Password</label>
           <input id="password" type="password" name="password" value={formData.password} onChange={handleChange} required />
         </div>
-        {/* Additional fields for registration */}
         {!isLogin && (
           <>
             <div className="form-group">
@@ -90,7 +84,7 @@ function LoginForm({ setToken }) {
           </>
         )}
         <button type="submit">{isLogin ? 'Log In' : 'Sign Up'}</button>
-        <button type="button" onClick={toggleForm}>
+        <button type="button" onClick={toggleForm} className="toggle-button">
           {isLogin ? 'Need to create an account?' : 'Already have an account?'}
         </button>
       </form>

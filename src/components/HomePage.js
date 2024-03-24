@@ -10,20 +10,18 @@ import './HomePage.css';
  * @returns {JSX.Element} A JSX element representing the home page with conditional welcome messages.
  */
 function HomePage() {
-  console.log("Rendering HomePage");
-  
-  // Check if the user is logged in by verifying if a token exists in localStorage
   const isUserLoggedIn = !!localStorage.getItem('joblyToken');
+  const username = localStorage.getItem('username'); // Retrieve the username
   
   return (
-    <div className="homepage">
-      <h1>Welcome to Jobly</h1>
-      {isUserLoggedIn ? (
-        <p>Welcome back! Ready to explore new job opportunities?</p>
-      ) : (
-        <p>All the jobs in one, convenient place. Please log in or sign up to explore jobs.</p>
-      )}
-    </div>
+      <div className="homepage">
+          <h1>Welcome to Jobly</h1>
+          {isUserLoggedIn ? (
+              <p>Welcome back, {username}! Ready to explore new job opportunities?</p>
+          ) : (
+              <p>All the jobs in one, convenient place. Please log in or sign up to explore jobs.</p>
+          )}
+      </div>
   );
 }
 
